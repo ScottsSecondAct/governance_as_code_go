@@ -1,5 +1,7 @@
 package governance
 
+import "sort"
+
 // PolicyFn is a function that evaluates a policy against a request context.
 // Returns nil to abstain (no opinion).
 type PolicyFn func(RequestContext) *PolicyDecision
@@ -10,6 +12,7 @@ type Policy struct {
 	Version     string
 	Author      string
 	Description string
+	Priority    int // Higher values evaluated first. Default 0. Ties preserve registration order.
 	Evaluate    PolicyFn
 }
 
@@ -24,8 +27,12 @@ type PolicyEngine struct {
 }
 
 // RegisterPolicy appends a policy to the engine's evaluation list.
+// Policies are sorted by Priority descending; ties preserve registration order.
 func (e *PolicyEngine) RegisterPolicy(p Policy) {
 	e.policies = append(e.policies, p)
+	sort.SliceStable(e.policies, func(i, j int) bool {
+		return e.policies[i].Priority > e.policies[j].Priority
+	})
 }
 
 // PolicyCount returns the number of registered policies.
