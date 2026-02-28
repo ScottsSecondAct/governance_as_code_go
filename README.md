@@ -1,5 +1,5 @@
 # Governance as Code — Go
-![AI Assisted](https://img.shields.io/badge/AI%20Assisted-Claude-blue?logo=anthropic)
+![AI Assisted](https://img.shields.io/badge/AI%20Assisted-Claude-blue?logo=anthropic) [![Release](https://github.com/ScottsSecondAct/governance_as_code_go/actions/workflows/release.yml/badge.svg)](https://github.com/ScottsSecondAct/governance_as_code_go/actions/workflows/release.yml)
 
 A self-contained Go library demonstrating **policy enforcement** and **compliance checking** as first-class code constructs — with structured audit trails, JSON serialization for SIEM integration, and zero external dependencies.
 
