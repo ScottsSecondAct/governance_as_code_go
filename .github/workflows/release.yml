@@ -40,11 +40,12 @@ jobs:
             cross: true
 
           - target: x86_64-macos
-            os: macos-13
+            os: macos-latest
             goos: darwin
             goarch: amd64
             binary_ext: ''
             archive: tar.gz
+            cross: true
 
           - target: aarch64-macos
             os: macos-latest
@@ -68,6 +69,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GO_VERSION }}
+          cache: false
 
       # Tests cannot run on cross-compiled binaries
       - name: Test
